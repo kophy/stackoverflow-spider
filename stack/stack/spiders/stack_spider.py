@@ -12,6 +12,8 @@ class StackSpider(scrapy.Spider):
         questions = scrapy.Selector(response).xpath("//div[@class='summary']/h3");
         for question in questions:
             item = StackItem();
-            item["title"] = question.xpath("'a[@class='question-hyperlink']/text()").extract()[0];
-            item["url"] = question.xpath("a[@class='question-hyperlink']/@href").extract()[0];
+            item["title"] = question.xpath(
+                'a[@class="question-hyperlink"]/text()').extract()[0]
+            item["url"] = question.xpath(
+                'a[@class="question-hyperlink"]/@href').extract()[0]
             yield item;
